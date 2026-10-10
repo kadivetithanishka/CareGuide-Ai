@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d9488">
+    <meta name="description" content="CareGuide AI - Clinical triage decision support system, live telehealth video consultation, doctor appointment booking, lab diagnostic report analyzer, personalized healthy nutrition plans, emergency red-flag triage, and CPR metronome. Available in English & Telugu.">
+    <meta name="keywords" content="symptom checker, AI health guidance, video call doctor, book appointment, lab report analyzer, health diet tips, CPR metronome, Telugu health assistant">
+    <title>CareGuide AI | Comprehensive Clinical Guidance, Telehealth & Lab Report Analyzer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Top Navigation Header -->
+    <header class="site-header" id="top">
+        <div class="container header-inner">
+            <a href="#top" class="brand-wrapper" aria-label="CareGuide AI Home">
+                <div class="brand-icon">✚</div>
+                <div class="brand-text-group">
+                    <span class="brand-title" data-i18n="brand">CareGuide AI</span>
+                    <span class="brand-tagline" data-i18n="tagline">Clinical Guidance & Triage</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="#triage" class="nav-link" data-i18n="nav_triage">Symptom Triage</a></li>
+                    <li><a href="#videocall" class="nav-link" data-i18n="nav_videocall">Live Video Consult</a></li>
+                    <li><a href="#appointment" class="nav-link" data-i18n="nav_appointment">Book Appointment</a></li>
+                    <li><a href="#reports" class="nav-link" data-i18n="nav_reports">Lab Report Checker</a></li>
+                    <li><a href="#nutrition" class="nav-link" data-i18n="nav_nutrition">Diet & Nutrition Tips</a></li>
+                    <li><a href="#firstaid" class="nav-link" data-i18n="nav_firstaid">First Aid & SOS</a></li>
+                    <li><a href="#locator" class="nav-link" data-i18n="nav_locator">Find Care</a></li>
+                    <li><a href="#calculators" class="nav-link" data-i18n="nav_calculators">Calculators</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Action Controls -->
+            <div class="header-actions">
+                <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle dark and light theme">
+                    🌙 Dark
+                </button>
+
+                <select id="languageSelect" class="lang-select" aria-label="Choose application language">
+                    <option value="en">English (US)</option>
+                    <option value="te">తెలుగు (Telugu)</option>
+                </select>
+
+                <a href="tel:112" class="sos-header-btn" id="quickSosBtn" aria-label="Emergency SOS call">
+                    <span>🚨</span> <span data-i18n="nav_sos">Emergency SOS</span>
+                </a>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Drawer">
+            <ul class="mobile-nav-list">
+                <li><a href="#triage" class="mobile-nav-link" data-i18n="nav_triage">🩺 Symptom Triage</a></li>
+                <li><a href="#videocall" class="mobile-nav-link" data-i18n="nav_videocall">📹 Live Video Consult</a></li>
+                <li><a href="#appointment" class="mobile-nav-link" data-i18n="nav_appointment">📅 Book Appointment</a></li>
+                <li><a href="#reports" class="mobile-nav-link" data-i18n="nav_reports">🧪 Lab Report Checker</a></li>
+                <li><a href="#nutrition" class="mobile-nav-link" data-i18n="nav_nutrition">🥗 Diet & Nutrition Tips</a></li>
+                <li><a href="#firstaid" class="mobile-nav-link" data-i18n="nav_firstaid">🫀 First Aid & SOS</a></li>
+                <li><a href="#locator" class="mobile-nav-link" data-i18n="nav_locator">🏥 Find Care</a></li>
+                <li><a href="#calculators" class="mobile-nav-link" data-i18n="nav_calculators">⚖️ Calculators</a></li>
+                <li><a href="#library" class="mobile-nav-link" data-i18n="nav_library">📚 Health Library</a></li>
+                <li><a href="/admin.html" class="mobile-nav-link" target="_blank">⚙️ Developer Backend Portal</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Horizontal Quick Section Pills Bar (One-touch navigation without horizontal page scroll) -->
+        <div class="mobile-quick-nav-bar" id="mobileQuickBar" aria-label="Mobile Quick Section Links">
+            <div class="mobile-quick-scroll">
+                <a href="#triage" class="quick-nav-pill">🩺 Triage</a>
+                <a href="#videocall" class="quick-nav-pill">📹 Video Call</a>
+                <a href="#appointment" class="quick-nav-pill">📅 Book Doctor</a>
+                <a href="#reports" class="quick-nav-pill">🧪 Lab Reports</a>
+                <a href="#nutrition" class="quick-nav-pill">🥗 Nutrition</a>
+                <a href="#firstaid" class="quick-nav-pill">🫀 First Aid</a>
+                <a href="#locator" class="quick-nav-pill">🏥 Find Care</a>
+                <a href="#calculators" class="quick-nav-pill">⚖️ Calculators</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="heroTitle">
+            <div class="container hero-content">
+                <div class="badge-pill">
+                    <span class="pulse-dot"></span>
+                    <span data-i18n="hero_badge">Clinical Intelligence Engine • Online 24/7</span>
+                </div>
+
+                <h1 class="hero-title" id="heroTitle">
+                    <span data-i18n="hero_title">Understand Your Symptoms. Take the Right Step.</span>
+                </h1>
+
+                <p class="hero-desc" data-i18n="hero_desc">
+                    Describe what you are experiencing in plain words or your native language. Our intelligent clinical engine evaluates urgency, spots life-threatening red flags, and prepares a physician-ready report.
+                </p>
+
+                <!-- Emergency Dispatch Bar -->
+                <div class="hero-hotlines-card">
+                    <div class="hotline-label-wrap">
+                        <span class="hotline-icon">🚨</span>
+                        <div>
+                            <div class="hotline-title" data-i18n="hero_sos_label">In a Life-Threatening Emergency? Call Right Away:</div>
+                            <small style="color: var(--text-muted);">Instant dispatch without delay</small>
+                        </div>
+                    </div>
+                    <div class="hotline-buttons">
+                        <a href="tel:108" class="hotline-btn">🚑 <span data-i18n="hero_sos_108">Ambulance (108)</span></a>
+                        <a href="tel:112" class="hotline-btn">🛡️ <span data-i18n="hero_sos_112">National (112)</span></a>
+                        <a href="tel:911" class="hotline-btn">🌐 <span data-i18n="hero_sos_911">Int'l (911)</span></a>
+                    </div>
+                </div>
+
+                <!-- Fast Demo Test Scenarios -->
+                <div class="demo-pill-section">
+                    <span class="demo-pill-label" data-i18n="demo_pill_label">Test Sample Scenarios:</span>
+                    <div class="demo-pills-row">
+                        <button type="button" class="scenario-pill" data-case-index="0" data-i18n="demo_btn_emergency">🚨 Cardiac Emergency</button>
+                        <button type="button" class="scenario-pill" data-case-index="1" data-i18n="demo_btn_urgent">⚠️ High Child Fever</button>
+                        <button type="button" class="scenario-pill" data-case-index="2" data-i18n="demo_btn_routine">🟡 Lingering Cough</button>
+                        <button type="button" class="scenario-pill" data-case-index="3" data-i18n="demo_btn_mild">🟢 Mild Tension Headache</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core AI Triage & Assessment Form -->
+        <section class="triage-section" id="triage" aria-labelledby="triageHead">
+            <div class="container">
+                <div class="triage-card">
+                    <div class="section-head">
+                        <h2 class="section-title" id="triageHead" data-i18n="checker_heading">Intelligent Symptom Assessment</h2>
+                        <p class="section-subtitle" data-i18n="checker_subheading">Complete the details below for prioritized triage recommendations.</p>
+                    </div>
+
+                    <!-- Patient Context Metadata -->
+                    <div class="patient-context-grid">
+                        <div class="form-group">
+                            <label for="ageGroupSelect" class="form-label" data-i18n="ctx_age_label">Patient Age Group</label>
+                            <select id="ageGroupSelect" class="form-select">
+                                <option value="adult" data-i18n="ctx_age_adult">Adult (18 - 64 yrs)</option>
+                                <option value="infant" data-i18n="ctx_age_infant">Infant (&lt; 1 yr)</option>
+                                <option value="child" data-i18n="ctx_age_child">Child (1 - 12 yrs)</option>
+                                <option value="senior" data-i18n="ctx_age_senior">Senior (65+ yrs)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="durationSelect" class="form-label" data-i18n="ctx_duration_label">Symptom Duration</label>
+                            <select id="durationSelect" class="form-select">
+                                <option value="less_6h" data-i18n="ctx_dur_6h">Less than 6 hours</option>
+                                <option value="1_2d" data-i18n="ctx_dur_1d">1 to 2 days</option>
+                                <option value="3_7d" data-i18n="ctx_dur_3d">3 to 7 days</option>
+                                <option value="chronic" data-i18n="ctx_dur_long">More than a week</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-label">
+                                <span data-i18n="ctx_severity_label">Pain / Discomfort Severity</span>
+                                <span class="severity-display-badge" id="severityBadge">5/10 - Moderate</span>
+                            </div>
+                            <div class="severity-slider-wrap">
+                                <input type="range" min="1" max="10" value="5" id="severitySlider" class="severity-slider" aria-label="Pain severity scale from 1 to 10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Symptom Tags Matrix -->
+                    <div class="chips-container">
+                        <div class="chips-title" data-i18n="quick_select_title">Select common accompanying symptoms:</div>
+                        <div class="symptom-chips-matrix" id="symptomChipsMatrix">
+                            <!-- Populated dynamically by app.js -->
+                        </div>
+                    </div>
+
+                    <!-- Symptom Narrative Textarea with Voice Input -->
+                    <div class="textarea-wrapper">
+                        <div class="textarea-topbar">
+                            <label for="concernTextarea" class="form-label" data-i18n="input_label">Describe your symptoms, sensation, and timeline:</label>
+                            <button type="button" class="voice-btn" id="voiceInputBtn" aria-label="Activate voice recognition">
+                                <span>🎤</span> <span data-i18n="voice_start">Speak Symptoms (Voice Input)</span>
+                            </button>
+                        </div>
+
+                        <textarea id="concernTextarea" class="form-textarea" maxlength="1000" rows="5" placeholder="e.g., I've had sudden pressure in my chest spreading to my left shoulder with cold sweats, or a high fever for 2 days..."></textarea>
+
+                        <div class="textarea-footer">
+                            <span>💡 Tip: Mention when it started and what makes it better or worse.</span>
+                            <span id="charCountDisplay">0/1000 chars</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons-group">
+                        <button type="button" class="btn-primary-action" id="analyzeSymptomsBtn">
+                            <span data-i18n="btn_analyze">Analyze Symptoms with AI Triage →</span>
+                        </button>
+                        <button type="button" class="btn-secondary-action" id="clearSymptomsBtn" data-i18n="btn_clear">
+                            Clear All
+                        </button>
+                    </div>
+
+                    <!-- Educational Notice Pill -->
+                    <div class="safety-notice-pill">
+                        <span style="font-size: 1.4rem;">⚠️</span>
+                        <div>
+                            <strong>Clinical Protocol Notice:</strong>
+                            <span data-i18n="disclaimer_text">CareGuide AI is an educational decision-support tool and DOES NOT provide clinical diagnosis, medical prescriptions, or replace direct consultation with licensed healthcare professionals.</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic AI Clinical Assessment Results Container -->
+                    <div class="assessment-result-wrapper" id="assessmentResultWrapper" aria-live="polite">
+                        <div class="result-card" id="clinicalResultCard">
+                            <!-- Header Bar -->
+                            <div class="result-header-row">
+                                <div>
+                                    <span class="triage-level-badge" id="triageLevelBadge">Triage Level</span>
+                                    <h3 id="triageTitle" style="font-size: 1.5rem; margin-top: 10px;">Evaluation Summary</h3>
+                                </div>
+                                <div class="result-actions-tools">
+                                    <button type="button" class="tool-btn" id="saveTriageBtn" data-i18n="records_save_triage_btn" style="background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary);">
+                                        💾 Save Assessment to History
+                                    </button>
+                                    <button type="button" class="tool-btn" id="copyClinicalReportBtn" data-i18n="res_copy_btn">
+                                        📋 Copy Clinical Report
+                                    </button>
+                                    <button type="button" class="tool-btn" id="exportReportBtn" data-i18n="res_export_btn">
+                                        📄 Export / Print Doctor's Summary
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Emergency Flash Alert Banner (Visible when Level 1) -->
+                            <div class="emergency-callout-banner" id="emergencyCalloutBanner">
+                                <h3>🚨 <span data-i18n="res_emergency_banner">POTENTIAL MEDICAL EMERGENCY DETECTED. DO NOT DELAY.</span></h3>
+                                <p data-i18n="res_emergency_alert_text">Your described symptoms may indicate a critical medical emergency. Call local emergency dispatch or proceed to the nearest emergency department immediately.</p>
+                                <div class="emergency-btn-row">
+                                    <a href="tel:108" class="emergency-act-btn">📞 <span data-i18n="res_call_emergency_now">Call Emergency (108 / 112)</span></a>
+                                    <a href="#locator" class="emergency-act-btn">🏥 <span data-i18n="res_find_emergency_room">Locate Nearest Emergency Hospital</span></a>
+                                </div>
+                            </div>
+
+                            <p id="triageDescription" style="font-size: 1.05rem; margin-bottom: 24px; color: var(--text-primary);"></p>
+
+                            <!-- Results Detailed Breakdown Grid -->
+                            <div class="result-body-grid">
+                                <!-- Differentials -->
+                                <div class="result-block">
+                                    <h4 class="block-title">🩺 <span data-i18n="res_possible_causes_title">Conditions Physicians Typically Evaluate</span></h4>
+                                    <ul class="result-list" id="possibleCausesList"></ul>
+                                </div>
+
+                                <!-- Immediate Steps -->
+                                <div class="result-block">
+                                    <h4 class="block-title">📋 <span data-i18n="res_immediate_steps_title">Immediate Recommended Next Steps</span></h4>
+                                    <ul class="result-list" id="immediateStepsList"></ul>
+                                </div>
+
+                                <!-- Red Flags -->
+                                <div class="result-block red-flags-block">
+                                    <h4 class="block-title">⚠️ <span data-i18n="res_red_flags_title">Critical Red Flags Requiring Immediate Escalation</span></h4>
+                                    <ul class="result-list" id="redFlagsList"></ul>
+                                </div>
+
+                                <!-- Doctor Questions -->
+                                <div class="result-block">
+                                    <h4 class="block-title">💬 <span data-i18n="res_questions_title">Questions to Ask Your Doctor</span></h4>
+                                    <ul class="result-list" id="questionsForDoctorList"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Clarifying Screening Questions -->
+                            <div class="clarifying-questions-card" id="clarifyingQuestionsCard">
+                                <div class="cq-head">
+                                    <h4 style="font-size: 1.1rem; font-weight: 700;" data-i18n="res_clarifying_title">Interactive Follow-Up Screening Questions</h4>
+                                    <p style="font-size: 0.88rem; color: var(--text-secondary);" data-i18n="res_clarifying_desc">Answer these quick clinical questions to refine your triage priority in real time:</p>
+                                </div>
+                                <div id="clarifyingQuestionsList">
+                                    <!-- Dynamic Questions -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Telehealth Live Video Consultation Room -->
+        <section class="videocall-section" id="videocall" aria-labelledby="videoCallHead">
+            <div class="container">
+                <div class="section-head text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                    <h2 class="section-title" id="videoCallHead" data-i18n="video_heading">Telehealth Live Video Consultation Room</h2>
+                    <p class="section-subtitle" data-i18n="video_subheading">Connect face-to-face with verified specialist physicians from the comfort and privacy of your home.</p>
+                </div>
+
+                <div class="video-consult-layout">
+                    <!-- Video Screen Window -->
+                    <div class="video-player-container">
+                        <!-- Header overlay -->
+                        <div class="video-header-overlay">
+                            <div class="live-badge" id="videoCallStatusBadge">
+                                <span class="pulse-dot"></span>
+                                <span data-i18n="video_connected_status">🔴 Live Encrypted Video Session Active</span>
+                            </div>
+                            <div class="call-timer" id="videoCallTimer">00:00</div>
+                        </div>
+
+                        <!-- Doctor Stream Area (Simulated Live Video) -->
+                        <div class="doctor-main-stream">
+                            <div class="doctor-avatar-circle">👩‍⚕️</div>
+                            <div class="audio-waveform-bars">
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                            </div>
+                            <h3 class="doctor-stream-name">Dr. Sarah Rao, MD</h3>
+                            <span class="doctor-stream-title" data-i18n="video_doc_status">Chief Telehealth Medical Director · On Call</span>
+                        </div>
+
+                        <!-- User PiP Camera Feed -->
+                        <div class="user-local-pip">
+                            <video id="userLocalVideoElem" class="user-local-video-elem" autoplay playsinline muted></video>
+                            <span class="user-pip-label">You (Patient)</span>
+                        </div>
+
+                        <!-- Video Controls -->
+                        <div class="video-control-bar">
+                            <button type="button" class="video-ctrl-btn ctrl-btn-standard" id="startVideoConsultBtn" data-i18n="video_start">
+                                📹 Start Video Consultation
+                            </button>
+                            <button type="button" class="video-ctrl-btn ctrl-btn-standard" id="toggleCameraBtn" data-i18n="video_cam_on">
+                                📷 Camera On
+                            </button>
+                            <button type="button" class="video-ctrl-btn ctrl-btn-standard" id="toggleMicBtn" data-i18n="video_mic_on">
+                                🎙️ Mic Active
+                            </button>
+                            <button type="button" class="video-ctrl-btn ctrl-btn-end" id="endVideoConsultBtn" style="display: none;" data-i18n="video_end_call">
+                                🛑 End Consultation
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- In-Call Live Clinical Chat Drawer -->
+                    <div class="video-chat-container">
+                        <div class="video-chat-head">
+                            <h4 style="font-size: 1.05rem; font-weight: 700;" data-i18n="video_chat_heading">Live In-Call Clinical Chat</h4>
+                            <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">🟢 Online</span>
+                        </div>
+
+                        <div class="video-chat-messages" id="videoChatMessagesList">
+                            <!-- Messages added dynamically -->
+                        </div>
+
+                        <div class="video-chat-input-row">
+                            <input type="text" id="videoChatInputField" class="video-chat-input" placeholder="Type a message or describe a symptom..." aria-label="Type message in video call">
+                            <button type="button" class="video-chat-send-btn" id="sendVideoChatBtn" data-i18n="video_chat_send">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Book Doctor Appointment Section -->
+        <section class="appointment-section" id="appointment" aria-labelledby="appointHead">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title" id="appointHead" data-i18n="book_heading">Book In-Clinic & Video Appointments</h2>
+                    <p class="section-subtitle" data-i18n="book_subheading">Schedule a consultation with top cardiologists, pediatricians, neurologists, and general physicians.</p>
+                </div>
+
+                <!-- Specialty Filter Chips -->
+                <div class="specialty-filter-bar">
+                    <button type="button" class="specialty-chip-btn active" data-specialty="all" data-i18n="book_filter_all">All Specialists</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="cardiology" data-i18n="book_filter_cardio">Cardiology</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="pediatrics" data-i18n="book_filter_pediatrics">Pediatrics</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="neurology" data-i18n="book_filter_neuro">Neurology</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="general" data-i18n="book_filter_general">General Medicine</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="orthopedics" data-i18n="book_filter_ortho">Orthopedics</button>
+                    <button type="button" class="specialty-chip-btn" data-specialty="gynecology" data-i18n="book_filter_gyn">Gynecology</button>
+                </div>
+
+                <!-- Doctors Directory Grid -->
+                <div class="doctors-grid" id="doctorsGridContainer">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+
+                <!-- Booking Details Input Form -->
+                <div class="booking-form-card" id="appointmentBookingFormCard">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="font-size: 1.35rem; font-weight: 800;">📅 Patient Registration & Booking Confirmation</h3>
+                        <span id="selectedDoctorNameBadge" style="background: var(--primary-light); color: var(--primary-dark); padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 700;">
+                            Selected: Dr. Arvind Sharma (09:30 AM)
+                        </span>
+                    </div>
+
+                    <form id="doctorAppointmentForm">
+                        <input type="hidden" id="bookingDoctorIdInput" value="doc_1">
+                        <input type="hidden" id="bookingSlotInput" value="09:30 AM">
+
+                        <div class="patient-context-grid" style="margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="bookingPatientNameInput" class="form-label" data-i18n="book_patient_name">Patient Full Name</label>
+                                <input type="text" id="bookingPatientNameInput" class="form-input" placeholder="e.g. Vishnu Vardhan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingPatientPhoneInput" class="form-label" data-i18n="book_patient_phone">Phone / WhatsApp Number</label>
+                                <input type="tel" id="bookingPatientPhoneInput" class="form-input" placeholder="e.g. +91 98765 43210" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingDateInput" class="form-label">Preferred Appointment Date</label>
+                                <input type="date" id="bookingDateInput" class="form-input" value="2026-10-12" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingConsultModeSelect" class="form-label" data-i18n="book_consult_mode">Consultation Type</label>
+                                <select id="bookingConsultModeSelect" class="form-select">
+                                    <option value="clinic" data-i18n="book_mode_clinic">🏥 In-Clinic Hospital Visit</option>
+                                    <option value="video" data-i18n="book_mode_video">💻 Online Telehealth Video Call</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label for="bookingReasonInput" class="form-label" data-i18n="book_patient_reason">Primary Health Concern / Symptoms</label>
+                            <input type="text" id="bookingReasonInput" class="form-input" placeholder="e.g. Routine hypertension checkup or persistent cough">
+                        </div>
+
+                        <button type="submit" class="btn-primary-action" style="width: 100%;">
+                            <span data-i18n="book_btn_confirm">Confirm & Generate Appointment Pass →</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Diagnostic Lab Report Checker & Conclusion Engine -->
+        <section class="reports-section" id="reports" aria-labelledby="reportsHead">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title" id="reportsHead" data-i18n="reports_heading">Diagnostic Lab Report Analyzer & Clinical Conclusions</h2>
+                    <p class="section-subtitle" data-i18n="reports_subheading">Input your diagnostic test markers to receive evidence-based range analysis, risk classifications, and actionable clinical next steps.</p>
+                </div>
+
+                <!-- Preloaded Sample Report Buttons -->
+                <div style="margin-bottom: 12px; font-size: 0.88rem; font-weight: 700; color: var(--text-muted);" data-i18n="reports_sample_label">
+                    Or quickly test sample diagnostic panels:
+                </div>
+                <div class="report-presets-row">
+                    <button type="button" class="preset-report-btn" data-sample-index="0">🩸 Diabetic & High Cholesterol Profile</button>
+                    <button type="button" class="preset-report-btn" data-sample-index="1">📉 Iron Deficiency Anemia & Fatigue</button>
+                    <button type="button" class="preset-report-btn" data-sample-index="2">✅ Optimal Routine Master Health Check</button>
+                </div>
+
+                <!-- Input Metrics Grid -->
+                <div class="lab-inputs-grid">
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Fasting Glucose (FBS)</span>
+                            <span>Normal: 70-99</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labGlucoseInput" class="form-input" value="148" step="1">
+                            <span class="metric-unit">mg/dL</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>HbA1c (Glycated Hb)</span>
+                            <span>Normal: &lt;5.7%</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labHba1cInput" class="form-input" value="7.4" step="0.1">
+                            <span class="metric-unit">%</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Blood Pressure (Systolic)</span>
+                            <span>Normal: &lt;120</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labBpSystolicInput" class="form-input" value="138" step="1">
+                            <span class="metric-unit">mmHg</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Blood Pressure (Diastolic)</span>
+                            <span>Normal: &lt;80</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labBpDiastolicInput" class="form-input" value="88" step="1">
+                            <span class="metric-unit">mmHg</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Total Cholesterol</span>
+                            <span>Desirable: &lt;200</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labCholesterolInput" class="form-input" value="245" step="1">
+                            <span class="metric-unit">mg/dL</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Hemoglobin (Hb)</span>
+                            <span>Normal: 12-16.5</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labHemoglobinInput" class="form-input" value="13.5" step="0.1">
+                            <span class="metric-unit">g/dL</span>
+                        </div>
+                    </div>
+
+                    <div class="lab-metric-card">
+                        <div class="metric-header">
+                            <span>Serum Creatinine (Kidney)</span>
+                            <span>Normal: 0.6-1.2</span>
+                        </div>
+                        <div class="metric-input-wrapper">
+                            <input type="number" id="labCreatinineInput" class="form-input" value="1.0" step="0.1">
+                            <span class="metric-unit">mg/dL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons-group">
+                    <button type="button" class="btn-primary-action" id="analyzeReportBtn">
+                        <span data-i18n="reports_btn_analyze">Analyze Report & Generate Clinical Conclusions →</span>
+                    </button>
+                </div>
+
+                <!-- Diagnostic Conclusion Container -->
+                <div class="lab-conclusion-container" id="labConclusionContainer">
+                    <div class="result-header-row" style="flex-wrap: wrap; gap: 10px;">
+                        <h3 style="font-size: 1.45rem; font-weight: 800;" data-i18n="reports_conclusion_title">Clinical Diagnostic Conclusion & Summary</h3>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button type="button" class="tool-btn" id="saveLabReportBtn" data-i18n="reports_save_db_btn" style="background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary);">
+                                💾 Save Report to Database
+                            </button>
+                            <button type="button" class="tool-btn" id="exportLabReportBtn" data-i18n="reports_export_btn">
+                                📄 Export Lab Conclusion Brief
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Overall Health Risk Banner -->
+                    <div class="conclusion-overall-badge" id="labOverallBadge">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Visual Progress Range Meters -->
+                    <div class="diagnostic-meter-grid" id="labMetersGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Clinical Findings Explanation -->
+                    <div class="result-block" style="margin-bottom: 24px;">
+                        <h4 class="block-title">📋 Clinical Interpretation:</h4>
+                        <p id="labConclusionSummaryText" style="font-size: 1rem; color: var(--text-primary); line-height: 1.65;"></p>
+                    </div>
+
+                    <!-- Action Steps -->
+                    <div class="result-block">
+                        <h4 class="block-title">🍎 <span data-i18n="reports_action_title">Recommended Dietary & Clinical Interventions</span></h4>
+                        <ul class="result-list" id="labActionStepsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Healthy Food Tips & Clinical Nutrition Hub -->
+        <section class="nutrition-section" id="nutrition" aria-labelledby="nutritionHead">
+            <div class="container">
+                <div class="section-head text-center" style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                    <h2 class="section-title" id="nutritionHead" data-i18n="nutrition_heading">Personalized Healthy Diet & Clinical Nutrition Plans</h2>
+                    <p class="section-subtitle" data-i18n="nutrition_subheading">Evidence-based meal plans, healing superfoods, and dietary do's and don'ts tailored to your health condition.</p>
+                </div>
+
+                <!-- Condition Tabs -->
+                <div class="condition-nav-tabs" style="justify-content: center;">
+                    <button type="button" class="condition-tab-btn active" data-condition="heart">🫀 Heart & Cholesterol</button>
+                    <button type="button" class="condition-tab-btn" data-condition="diabetes">🩸 Diabetes & Blood Sugar</button>
+                    <button type="button" class="condition-tab-btn" data-condition="hypertension">⚡ Blood Pressure (DASH)</button>
+                    <button type="button" class="condition-tab-btn" data-condition="immunity">🛡️ Immunity & Recovery</button>
+                </div>
+
+                <!-- Active Condition Title & Tagline -->
+                <div style="text-align: center; margin-bottom: 28px;">
+                    <h3 id="nutritionConditionTitle" style="font-size: 1.5rem; font-weight: 800;">🫀 Heart Health & Cardio Fitness</h3>
+                    <p id="nutritionTagline" style="color: var(--primary); font-weight: 600;">Mediterranean & Low-Saturated Fat Protocols</p>
+                </div>
+
+                <!-- Do's and Don'ts Panel Grid -->
+                <div class="nutrition-panel-grid">
+                    <div class="food-card dos">
+                        <h4 class="food-card-title">🍏 <span data-i18n="nutrition_dos_title">Foods to Eat (Healing Superfoods)</span></h4>
+                        <ul class="food-checklist" id="foodDosList">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+
+                    <div class="food-card donts">
+                        <h4 class="food-card-title">🚫 <span data-i18n="nutrition_donts_title">Foods to Strictly Avoid</span></h4>
+                        <ul class="food-checklist" id="foodDontsList">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1-Day Sample Clinical Meal Plan -->
+                <div class="mealplan-card">
+                    <h4 style="font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                        <span>🍽️</span> <span data-i18n="nutrition_mealplan_title">Sample 1-Day Clinical Meal Plan</span>
+                    </h4>
+                    <div class="mealplan-grid" id="mealPlanGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency First-Aid Hub & Metronome -->
+        <section class="firstaid-section" id="firstaid" aria-labelledby="firstaidHead">
+            <div class="container">
+                <div class="section-head text-center" style="text-align: center; max-width: 760px; margin: 0 auto 36px;">
+                    <h2 class="section-title" id="firstaidHead" data-i18n="firstaid_heading">Emergency First Aid Hub & Protocols</h2>
+                    <p class="section-subtitle" data-i18n="firstaid_subheading">Life-saving step-by-step guidance designed for immediate bystanders during acute emergencies.</p>
+                </div>
+
+                <div class="firstaid-grid">
+                    <!-- Interactive CPR Metronome Box -->
+                    <div class="cpr-metronome-card">
+                        <div>
+                            <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">AHA GUIDELINES 100-120 BPM</span>
+                            <h3 class="cpr-head-title" style="margin-top: 10px;" data-i18n="cpr_metronome_title">Hands-Only CPR Rhythm Metronome (110 BPM)</h3>
+                            <p class="cpr-sub" data-i18n="cpr_metronome_desc">Push hard and fast in the center of the chest to the rhythm of this beat until medical professionals arrive.</p>
+                        </div>
+
+                        <!-- Animated Visualizer & Sound -->
+                        <div class="cpr-visualizer">
+                            <div class="heart-beat-circle" id="cprHeartVisual">🫀</div>
+                            <div class="cpr-counter-display" id="cprCompressionCounter">0</div>
+                            <span class="cpr-counter-label" data-i18n="cpr_compression_count">Compressions Delivered</span>
+                        </div>
+
+                        <!-- Metronome Controls -->
+                        <div class="cpr-controls">
+                            <button type="button" class="cpr-btn-start" id="startCprMetronomeBtn" data-i18n="cpr_start_beat">
+                                ▶ Start CPR Beat (110 BPM)
+                            </button>
+                            <button type="button" class="cpr-btn-stop" id="stopCprMetronomeBtn" data-i18n="cpr_stop_beat">
+                                ⏹ Stop Metronome
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive FAST Stroke & First Aid Guides -->
+                    <div class="guides-list">
+                        <!-- FAST Stroke Tool -->
+                        <div class="guide-item-card">
+                            <div class="guide-summary-bar">
+                                <div class="guide-title-wrap">
+                                    <span class="guide-icon">🧠</span>
+                                    <span class="guide-name">FAST Stroke Evaluation Test</span>
+                                </div>
+                                <span>▼</span>
+                            </div>
+                            <div class="guide-content-drawer open">
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px;">
+                                    Every minute in stroke saves 1.9 million brain cells. Check signs observed:
+                                </p>
+                                <div class="fast-tester-box">
+                                    <label class="fast-check-row">
+                                        <input type="checkbox" class="fast-check-input">
+                                        <span data-i18n="stroke_f_check">Face Drooping (Uneven smile or one side pulled down)</span>
+                                    </label>
+                                    <label class="fast-check-row">
+                                        <input type="checkbox" class="fast-check-input">
+                                        <span data-i18n="stroke_a_check">Arm Weakness (One arm drifts downward when raised)</span>
+                                    </label>
+                                    <label class="fast-check-row">
+                                        <input type="checkbox" class="fast-check-input">
+                                        <span data-i18n="stroke_s_check">Speech Difficulty (Slurred, garbled, or nonsensical words)</span>
+                                    </label>
+                                    <div class="fast-result-msg" id="fastStrokeResult"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Choking Guide -->
+                        <div class="guide-item-card">
+                            <div class="guide-summary-bar">
+                                <div class="guide-title-wrap">
+                                    <span class="guide-icon">💨</span>
+                                    <span class="guide-name">Choking & Heimlich Maneuver</span>
+                                </div>
+                                <span>▼</span>
+                            </div>
+                            <div class="guide-content-drawer">
+                                <ol class="guide-steps-list">
+                                    <li>Stand behind the person and wrap arms around their waist.</li>
+                                    <li>Place fist thumb-side against upper abdomen, just above navel.</li>
+                                    <li>Grasp fist with other hand and give quick upward inward thrusts.</li>
+                                    <li>Repeat until foreign body is dislodged or person becomes unconscious.</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Bleeding Control -->
+                        <div class="guide-item-card">
+                            <div class="guide-summary-bar">
+                                <div class="guide-title-wrap">
+                                    <span class="guide-icon">🩹</span>
+                                    <span class="guide-name">Severe Bleeding & Wound Care</span>
+                                </div>
+                                <span>▼</span>
+                            </div>
+                            <div class="guide-content-drawer">
+                                <ol class="guide-steps-list">
+                                    <li>Apply direct, firm pressure on wound using sterile cloth or gauze.</li>
+                                    <li>Do not remove soaked gauze; add more layers over it.</li>
+                                    <li>Elevate the injured limb above heart level if no fracture is suspected.</li>
+                                    <li>If arterial spurting blood continues, apply a tourniquet 2-3 inches above wound.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Healthcare Facility Locator -->
+        <section class="locator-section" id="locator" aria-labelledby="locatorHead">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title" id="locatorHead" data-i18n="locator_heading">Find Medical Care Facilities Nearby</h2>
+                    <p class="section-subtitle" data-i18n="locator_subheading">Locate verified 24/7 trauma hospitals, urgent clinics, primary physicians, and pharmacies.</p>
+                </div>
+
+                <div class="locator-toolbar">
+                    <div class="locator-tabs" role="tablist">
+                        <button type="button" class="locator-tab-btn active" data-tab="all" data-i18n="locator_tab_all">All Facilities</button>
+                        <button type="button" class="locator-tab-btn" data-tab="emergency" data-i18n="locator_tab_emergency">24/7 Emergency</button>
+                        <button type="button" class="locator-tab-btn" data-tab="urgent" data-i18n="locator_tab_urgent">Urgent Care</button>
+                        <button type="button" class="locator-tab-btn" data-tab="primary" data-i18n="locator_tab_primary">Family Doctor</button>
+                        <button type="button" class="locator-tab-btn" data-tab="pharmacy" data-i18n="locator_tab_pharmacy">Pharmacies</button>
+                    </div>
+
+                    <input type="text" id="locatorSearchInput" class="locator-search-input" placeholder="Search by facility name, service, or area..." aria-label="Search healthcare facilities">
+                </div>
+
+                <!-- Facilities Grid Container -->
+                <div class="facilities-grid" id="facilitiesGridContainer">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Health Calculators & Screeners -->
+        <section class="calculators-section" id="calculators" aria-labelledby="calcHead">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title" id="calcHead" data-i18n="calc_heading">Interactive Health Calculators & Screeners</h2>
+                    <p class="section-subtitle" data-i18n="calc_subheading">Quick evidence-based self-assessment tools for preventive health.</p>
+                </div>
+
+                <div class="calc-grid">
+                    <!-- BMI Calculator -->
+                    <div class="calc-card">
+                        <div>
+                            <h3 class="calc-title">⚖️ <span data-i18n="bmi_title">BMI & Weight Category Calculator</span></h3>
+                            <div class="calc-form-row">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="bmiHeightInput" class="form-label" data-i18n="bmi_height_label">Height (cm)</label>
+                                    <input type="number" id="bmiHeightInput" class="form-input" placeholder="e.g. 175" value="172">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="bmiWeightInput" class="form-label" data-i18n="bmi_weight_label">Weight (kg)</label>
+                                    <input type="number" id="bmiWeightInput" class="form-input" placeholder="e.g. 68" value="68">
+                                </div>
+                            </div>
+                            <button type="button" class="calc-submit-btn" id="calcBmiBtn" data-i18n="bmi_btn">Calculate BMI</button>
+                        </div>
+                        <div class="calc-result-box" id="bmiResultBox"></div>
+                    </div>
+
+                    <!-- Daily Hydration Calculator -->
+                    <div class="calc-card">
+                        <div>
+                            <h3 class="calc-title">💧 <span data-i18n="water_title">Daily Hydration Target Estimator</span></h3>
+                            <div class="calc-form-row">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="waterWeightInput" class="form-label" data-i18n="water_weight_label">Body Weight (kg)</label>
+                                    <input type="number" id="waterWeightInput" class="form-input" placeholder="e.g. 70" value="70">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="waterActivitySelect" class="form-label" data-i18n="water_activity_label">Activity Level</label>
+                                    <select id="waterActivitySelect" class="form-select">
+                                        <option value="sedentary" data-i18n="water_act_low">Sedentary / Desk Work</option>
+                                        <option value="moderate" data-i18n="water_act_mod">Moderate (30m Exercise)</option>
+                                        <option value="high" data-i18n="water_act_high">Active / Heavy Workout</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="calc-submit-btn" id="calcWaterBtn" data-i18n="water_btn">Calculate Water Target</button>
+                        </div>
+                        <div class="calc-result-box" id="waterResultBox"></div>
+                    </div>
+
+                    <!-- Heart Rate Target Zone -->
+                    <div class="calc-card">
+                        <div>
+                            <h3 class="calc-title">🫀 <span data-i18n="hr_title">Target Heart Rate Zone Estimator</span></h3>
+                            <div class="calc-form-row">
+                                <div class="form-group" style="width: 100%;">
+                                    <label for="hrAgeInput" class="form-label" data-i18n="hr_age_label">Age (years)</label>
+                                    <input type="number" id="hrAgeInput" class="form-input" placeholder="e.g. 35" value="30">
+                                </div>
+                            </div>
+                            <button type="button" class="calc-submit-btn" id="calcHrBtn" data-i18n="hr_btn">Estimate Heart Rate Zones</button>
+                        </div>
+                        <div class="calc-result-box" id="hrResultBox"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evidence-Based Health Library -->
+        <section class="library-section" id="library" aria-labelledby="libHead">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title" id="libHead" data-i18n="library_heading">Evidence-Based Health Library</h2>
+                    <p class="section-subtitle" data-i18n="library_subheading">Medically reviewed articles and essential wellness education.</p>
+                </div>
+
+                <div class="articles-grid" id="healthArticlesGrid">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Verified Appointment Pass Modal -->
+    <div class="modal-overlay" id="bookingPassModal" role="dialog" aria-modal="true">
+        <div class="modal-container" style="max-width: 600px;">
+            <button type="button" class="modal-close-btn" id="closeBookingPassBtn" aria-label="Close pass modal">✕</button>
+            <div class="booking-pass-modal-box">
+                <div class="ticket-header">
+                    <div>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Official Appointment Confirmation</span>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; margin-top: 4px;" data-i18n="book_pass_title">Verified Clinical Appointment Pass</h3>
+                    </div>
+                    <div class="ticket-token-badge" id="bookingTokenBadge">#CG-2026-9812</div>
+                </div>
+
+                <div class="ticket-grid">
+                    <div class="ticket-item">
+                        <strong>Patient Name</strong>
+                        <span id="passPatientName">Patient</span>
+                    </div>
+                    <div class="ticket-item">
+                        <strong>Consulting Doctor</strong>
+                        <span id="passDoctorName">Dr. Arvind Sharma</span>
+                    </div>
+                    <div class="ticket-item">
+                        <strong>Specialty</strong>
+                        <span id="passSpecialty">Cardiology</span>
+                    </div>
+                    <div class="ticket-item">
+                        <strong>Date & Time Slot</strong>
+                        <span id="passDateTime">2026-10-12 at 09:30 AM</span>
+                    </div>
+                    <div class="ticket-item">
+                        <strong>Consultation Mode</strong>
+                        <span id="passMode">🏥 In-Clinic Hospital Visit</span>
+                    </div>
+                    <div class="ticket-item">
+                        <strong>Status</strong>
+                        <span style="color: var(--success); font-weight: 800;">CONFIRMED ✅</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                    <button type="button" class="btn-primary-action" id="printBookingPassBtn" style="padding: 12px;" data-i18n="book_print_pass">
+                        🖨️ Print / Save Booking Pass
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Detail Modal -->
+    <div class="modal-overlay" id="articleDetailModal" role="dialog" aria-modal="true">
+        <div class="modal-container">
+            <button type="button" class="modal-close-btn" id="closeArticleModalBtn" aria-label="Close modal">✕</button>
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary);" id="modalArticleMeta"></div>
+            <h2 id="modalArticleTitle" style="margin: 12px 0 16px; font-size: 1.6rem;"></h2>
+            <div id="modalArticleBody" style="font-size: 0.96rem; line-height: 1.7; white-space: pre-line; color: var(--text-secondary);"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Floating Stack -->
+    <div class="toast-container" id="toastNotificationsContainer" aria-live="polite"></div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-trust-box">
+                <div class="trust-title">🛡️ <span data-i18n="disclaimer_title">Clinical Trust & Safety Commitment</span></div>
+                <p class="trust-desc" data-i18n="disclaimer_text">
+                    Important Medical Disclaimer: CareGuide AI is an educational decision-support tool and DOES NOT provide clinical diagnosis, medical prescriptions, or replace direct consultation with licensed healthcare professionals. In any medical emergency, dial your local emergency services (108 / 112 / 911) or proceed immediately to the nearest hospital emergency department.
+                </p>
+                <p class="trust-desc" style="margin-top: 8px;" data-i18n="privacy_text">
+                    Privacy Protected: All symptom analysis is processed on your local device. We do not store or sell your sensitive medical notes.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    <strong data-i18n="footer_brand">CareGuide AI Healthcare Guidance Platform</strong> • <span data-i18n="footer_rights">Built for proactive health awareness & educational triage.</span>
+                </div>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <div data-i18n="footer_feedback">
+                        Emergency Services: India (108/112) · US (911) · UK (999) · Europe (112)
+                    </div>
+                    <div>
+                        <a href="/admin" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; padding: 4px 10px; background: var(--primary-light); border-radius: 6px; font-size: 0.8rem;">
+                            ⚙️ Developer & Admin Backend Portal →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="medical-data.js"></script>
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

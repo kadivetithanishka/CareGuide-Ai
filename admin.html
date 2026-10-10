@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareGuide AI | Developer & Admin Backend Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0b1319;
+            --bg-card: #13222e;
+            --bg-card-alt: #182b3a;
+            --bg-subtle: #0f1c26;
+            --primary: #14b8a6;
+            --primary-hover: #0d9488;
+            --primary-light: rgba(20, 184, 166, 0.15);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border: #23394a;
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.15);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.15);
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.15);
+            --blue: #38bdf8;
+            --blue-bg: rgba(56, 189, 248, 0.15);
+            --radius-md: 10px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar */
+        .admin-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-badge {
+            background: var(--primary);
+            color: #0b1319;
+            font-weight: 800;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .brand-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 700;
+        }
+
+        .header-status-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .nav-link-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 7px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link-btn:hover {
+            color: var(--text-main);
+            border-color: var(--primary);
+            background: var(--bg-card-alt);
+        }
+
+        /* Layout Container */
+        .admin-main {
+            flex: 1;
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Stat Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        .stat-val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .stat-name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Tabs Bar */
+        .portal-tabs-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tabs-list {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: var(--bg-card-alt);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #0b1319;
+            box-shadow: 0 2px 10px rgba(20, 184, 166, 0.4);
+        }
+
+        .tab-counter {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 2px 7px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .tab-btn.active .tab-counter {
+            background: rgba(11, 19, 25, 0.25);
+            color: #0b1319;
+        }
+
+        .portal-tools {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 9px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            min-width: 280px;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-action-sm {
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 9px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-action-sm:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Content Sections */
+        .tab-pane {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.88rem;
+            min-width: 760px;
+        }
+
+        th {
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            padding: 14px 18px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .code-token {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-subtle);
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .status-badge.confirmed {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.cancelled {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-badge.completed {
+            background: var(--blue-bg);
+            color: var(--blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .status-badge.danger {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-badge.borderline {
+            background: var(--warning-bg);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-badge.optimal {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Table Action Buttons */
+        .action-group {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .btn-table {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-table:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-table.danger:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: var(--danger-bg);
+        }
+
+        /* Developer Console & API Explorer */
+        .dev-console-wrapper {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .endpoint-selector-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .method-tag {
+            background: var(--primary);
+            color: #0b1319;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .endpoint-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .endpoint-btn:hover, .endpoint-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .json-viewer {
+            background: #080e14;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #38bdf8;
+            max-height: 480px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        /* Toast */
+        .admin-toast {
+            position: fixed;
+            bottom: clamp(12px, 2.5vw, 24px);
+            right: clamp(12px, 2.5vw, 24px);
+            max-width: calc(100vw - 24px);
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            color: var(--text-main);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+
+        .admin-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           Admin Responsive Styles (Laptops, Tablets, Phones, 320px - 1920px)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .admin-header {
+                padding: 14px 20px;
+            }
+            .admin-main {
+                padding: 20px 16px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 860px) {
+            .admin-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                padding: 14px 16px;
+            }
+
+            .header-status-group {
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .status-pill {
+                flex: 1 1 100%;
+                justify-content: center;
+                order: 3;
+            }
+
+            .portal-tabs-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .tabs-list {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+
+            .tabs-list::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .portal-tools {
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .search-box {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .admin-main {
+                padding: 16px 12px;
+                gap: 16px;
+            }
+
+            .header-brand {
+                gap: 8px;
+            }
+
+            .brand-title {
+                font-size: 1.05rem;
+                white-space: normal;
+                line-height: 1.25;
+            }
+
+            .brand-sub {
+                font-size: 0.72rem;
+            }
+
+            .brand-badge {
+                padding: 4px 8px;
+                font-size: 0.82rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 14px;
+                gap: 10px;
+                border-radius: var(--radius-md);
+            }
+
+            .stat-icon {
+                font-size: 1.6rem;
+            }
+
+            .stat-val {
+                font-size: 1.4rem;
+            }
+
+            .stat-name {
+                font-size: 0.75rem;
+            }
+
+            .portal-tools {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-action-sm {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .dev-console-wrapper {
+                padding: 16px 12px;
+            }
+
+            .endpoint-btn {
+                font-size: 0.78rem;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-status-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-link-btn {
+                justify-content: center;
+            }
+
+            .admin-toast {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                justify-content: center;
+                font-size: 0.82rem;
+                padding: 10px 14px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .admin-header {
+                padding: 10px 10px;
+            }
+
+            .brand-title {
+                font-size: 0.95rem;
+            }
+
+            .brand-badge {
+                display: none;
+            }
+
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .admin-header {
+                padding: 8px 8px;
+            }
+
+            .brand-title {
+                font-size: 0.88rem;
+            }
+
+            .admin-main {
+                padding: 10px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="header-brand">
+            <div class="brand-badge">API / DB</div>
+            <div>
+                <h1 class="brand-title">CareGuide AI Developer & Admin Portal</h1>
+                <div class="brand-sub">Clinical Database Operations & REST Engine</div>
+            </div>
+        </div>
+
+        <div class="header-status-group">
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span id="mongoHeaderBadge">🍃 MongoDB: careguide_db (Port 8080)</span>
+            </div>
+            <a href="/" class="nav-link-btn" title="Open patient facing interface">
+                <span>🌐</span> Public Patient Site
+            </a>
+            <button type="button" class="nav-link-btn" id="refreshAllBtn" title="Sync from database">
+                <span>🔄</span> Refresh
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <!-- Stat Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-icon">📅</span>
+                <div>
+                    <div class="stat-val" id="statAppts">0</div>
+                    <div class="stat-name">Total Appointments</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🟢</span>
+                <div>
+                    <div class="stat-val" id="statActive">0</div>
+                    <div class="stat-name">Confirmed Bookings</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🧪</span>
+                <div>
+                    <div class="stat-val" id="statReports">0</div>
+                    <div class="stat-name">Saved Lab Reports</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🚨</span>
+                <div>
+                    <div class="stat-val" id="statCritical" style="color: var(--danger);">0</div>
+                    <div class="stat-name">Critical Lab Flags</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🩺</span>
+                <div>
+                    <div class="stat-val" id="statTriage">0</div>
+                    <div class="stat-name">Triage Sessions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls & Tabs -->
+        <div class="portal-tabs-bar">
+            <div class="tabs-list" role="tablist">
+                <button type="button" class="tab-btn active" data-tab="tabAppointments">
+                    <span>📅</span> Appointments Registry <span class="tab-counter" id="badgeAppts">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-tab="tabReports">
+                    <span>🧪</span> Diagnostic Lab Records <span class="tab-counter" id="badgeReports">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-tab="tabTriage">
+                    <span>🩺</span> Triage Audit Logs <span class="tab-counter" id="badgeTriage">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-tab="tabDevConsole">
+                    <span>⚡</span> API Console & DB Explorer
+                </button>
+            </div>
+
+            <div class="portal-tools">
+                <input type="text" id="adminSearchInput" class="search-box" placeholder="Filter by patient, phone, or token...">
+                <button type="button" class="btn-action-sm" id="exportCsvBtn">
+                    <span>📥</span> Export CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 1: Appointments -->
+        <section class="tab-pane active" id="tabAppointments">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Token #</th>
+                            <th>Patient Name</th>
+                            <th>Phone</th>
+                            <th>Doctor & Specialty</th>
+                            <th>Date & Slot</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apptsTableBody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tab 2: Lab Reports -->
+        <section class="tab-pane" id="tabReports">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Patient Name</th>
+                            <th>Risk Level</th>
+                            <th>Glucose</th>
+                            <th>HbA1c</th>
+                            <th>BP</th>
+                            <th>Cholesterol</th>
+                            <th>Attachment</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tab 3: Triage Audit Logs -->
+        <section class="tab-pane" id="tabTriage">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Triage ID</th>
+                            <th>Patient</th>
+                            <th>Urgency Level</th>
+                            <th>Severity</th>
+                            <th>Chief Concern</th>
+                            <th>Evaluated Conditions</th>
+                            <th>Timestamp</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="triageTableBody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tab 4: Developer Console & API Explorer -->
+        <section class="tab-pane" id="tabDevConsole">
+            <div class="dev-console-wrapper">
+                <div>
+                    <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Developer REST API Sandbox</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">
+                        Execute live HTTP requests against the backend server endpoints and inspect JSON response bodies directly:
+                    </p>
+                    <div class="endpoint-selector-row">
+                        <button type="button" class="endpoint-btn active" data-url="/api/stats"><span class="method-tag">GET</span> /api/stats</button>
+                        <button type="button" class="endpoint-btn" data-url="/api/appointments"><span class="method-tag">GET</span> /api/appointments</button>
+                        <button type="button" class="endpoint-btn" data-url="/api/reports"><span class="method-tag">GET</span> /api/reports</button>
+                        <button type="button" class="endpoint-btn" data-url="/api/triage"><span class="method-tag">GET</span> /api/triage</button>
+                        <button type="button" class="endpoint-btn" data-url="/api/health"><span class="method-tag">GET</span> /api/health</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);" id="apiTargetUrl">TARGET: http://localhost:8080/api/stats</span>
+                        <span id="apiStatusBadge" style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">HTTP 200 OK</span>
+                    </div>
+                    <pre class="json-viewer" id="jsonOutputBox">// Loading API payload...</pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Toast Notification -->
+    <div class="admin-toast" id="adminToast">
+        <span id="toastIcon">✅</span>
+        <span id="toastMsg">Operation successful</span>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const state = {
+            appointments: [],
+            reports: [],
+            triage: [],
+            activeTab: "tabAppointments"
+        };
+
+        const elements = {
+            statAppts: document.getElementById("statAppts"),
+            statActive: document.getElementById("statActive"),
+            statReports: document.getElementById("statReports"),
+            statCritical: document.getElementById("statCritical"),
+            statTriage: document.getElementById("statTriage"),
+            badgeAppts: document.getElementById("badgeAppts"),
+            badgeReports: document.getElementById("badgeReports"),
+            badgeTriage: document.getElementById("badgeTriage"),
+            apptsTableBody: document.getElementById("apptsTableBody"),
+            reportsTableBody: document.getElementById("reportsTableBody"),
+            triageTableBody: document.getElementById("triageTableBody"),
+            searchInput: document.getElementById("adminSearchInput"),
+            jsonOutputBox: document.getElementById("jsonOutputBox"),
+            apiTargetUrl: document.getElementById("apiTargetUrl"),
+            apiStatusBadge: document.getElementById("apiStatusBadge"),
+            refreshBtn: document.getElementById("refreshAllBtn"),
+            exportCsvBtn: document.getElementById("exportCsvBtn"),
+            toast: document.getElementById("adminToast"),
+            toastMsg: document.getElementById("toastMsg"),
+            toastIcon: document.getElementById("toastIcon")
+        };
+
+        function showToast(msg, icon = "✅") {
+            elements.toastMsg.textContent = msg;
+            elements.toastIcon.textContent = icon;
+            elements.toast.classList.add("show");
+            setTimeout(() => elements.toast.classList.remove("show"), 3000);
+        }
+
+        // Fetch All Records from Backend
+        async function loadBackendData(notify = false) {
+            try {
+                const [apptsRes, reportsRes, triageRes, statsRes] = await Promise.all([
+                    fetch("/api/appointments").then(r => r.json()),
+                    fetch("/api/reports").then(r => r.json()),
+                    fetch("/api/triage").then(r => r.json()),
+                    fetch("/api/stats").then(r => r.json())
+                ]);
+
+                state.appointments = apptsRes.appointments || [];
+                state.reports = reportsRes.reports || [];
+                state.triage = triageRes.assessments || [];
+
+                // Stats
+                elements.statAppts.textContent = statsRes.total_appointments || state.appointments.length;
+                elements.statActive.textContent = statsRes.active_appointments || state.appointments.filter(a => a.status === 'Confirmed').length;
+                elements.statReports.textContent = statsRes.total_lab_reports || state.reports.length;
+                elements.statCritical.textContent = statsRes.critical_reports || state.reports.filter(r => r.overall_status === 'danger').length;
+                elements.statTriage.textContent = statsRes.total_triage_sessions || state.triage.length;
+
+                // Badges
+                elements.badgeAppts.textContent = state.appointments.length;
+                elements.badgeReports.textContent = state.reports.length;
+                elements.badgeTriage.textContent = state.triage.length;
+
+                renderCurrentTab();
+                if (notify) showToast("Database records synced successfully!");
+            } catch (err) {
+                console.error("Fetch error:", err);
+                showToast("Failed to connect to backend", "⚠️");
+            }
+        }
+
+        function renderCurrentTab() {
+            const query = (elements.searchInput.value || "").trim().toLowerCase();
+
+            if (state.activeTab === "tabAppointments") {
+                renderAppointments(query);
+            } else if (state.activeTab === "tabReports") {
+                renderReports(query);
+            } else if (state.activeTab === "tabTriage") {
+                renderTriage(query);
+            }
+        }
+
+        // Render Appointments Table
+        function renderAppointments(query) {
+            const filtered = state.appointments.filter(a => {
+                if (!query) return true;
+                return (a.patient_name || "").toLowerCase().includes(query) ||
+                       (a.patient_phone || "").toLowerCase().includes(query) ||
+                       (a.token || "").toLowerCase().includes(query) ||
+                       (a.doctor_name || "").toLowerCase().includes(query);
+            });
+
+            if (filtered.length === 0) {
+                elements.apptsTableBody.innerHTML = `
+                    <tr><td colspan="9" class="empty-state">
+                        <div class="empty-state-icon">📅</div>
+                        <h4>No appointments in database</h4>
+                    </td></tr>
+                `;
+                return;
+            }
+
+            elements.apptsTableBody.innerHTML = filtered.map(a => {
+                const statusClass = (a.status || "confirmed").toLowerCase();
+                const isClinic = a.consult_mode === "clinic";
+                return `
+                    <tr>
+                        <td><span class="code-token">#${a.token}</span></td>
+                        <td><strong>${a.patient_name}</strong></td>
+                        <td>${a.patient_phone}</td>
+                        <td>
+                            <div><strong>${a.doctor_name}</strong></div>
+                            <small style="color: var(--text-muted);">${a.specialty}</small>
+                        </td>
+                        <td>
+                            <div>${a.appointment_date}</div>
+                            <small style="color: var(--text-muted);">${a.appointment_slot}</small>
+                        </td>
+                        <td>${isClinic ? '🏥 In-Clinic' : '💻 Video Call'}</td>
+                        <td><span class="status-badge ${statusClass}">${a.status}</span></td>
+                        <td><small style="color: var(--text-dim);">${a.created_at ? a.created_at.split(" ")[0] : '-'}</small></td>
+                        <td>
+                            <div class="action-group">
+                                ${a.status === 'Confirmed' ? `
+                                    <button class="btn-table btn-complete" data-id="${a.id}" title="Mark completed">✔ Done</button>
+                                    <button class="btn-table danger btn-cancel" data-id="${a.id}" title="Cancel booking">✕ Cancel</button>
+                                ` : ''}
+                                <button class="btn-table danger btn-del-appt" data-id="${a.id}" title="Delete record">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            // Event Listeners
+            elements.apptsTableBody.querySelectorAll(".btn-complete").forEach(b => {
+                b.addEventListener("click", () => updateApptStatus(b.getAttribute("data-id"), "Completed"));
+            });
+            elements.apptsTableBody.querySelectorAll(".btn-cancel").forEach(b => {
+                b.addEventListener("click", () => updateApptStatus(b.getAttribute("data-id"), "Cancelled"));
+            });
+            elements.apptsTableBody.querySelectorAll(".btn-del-appt").forEach(b => {
+                b.addEventListener("click", () => deleteAppointment(b.getAttribute("data-id")));
+            });
+        }
+
+        async function updateApptStatus(id, newStatus) {
+            try {
+                const res = await fetch(`/api/appointments/${id}/status`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Appointment marked as ${newStatus}`);
+                    loadBackendData();
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function deleteAppointment(id) {
+            if (!confirm("Permanently delete this appointment from database?")) return;
+            try {
+                const res = await fetch(`/api/appointments/${id}`, { method: "DELETE" });
+                const data = await res.json();
+                if (data.success) {
+                    showToast("Appointment deleted from database", "🗑️");
+                    loadBackendData();
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // Render Reports Table
+        function renderReports(query) {
+            const filtered = state.reports.filter(r => {
+                if (!query) return true;
+                return (r.patient_name || "").toLowerCase().includes(query) ||
+                       (r.report_id || "").toLowerCase().includes(query);
+            });
+
+            if (filtered.length === 0) {
+                elements.reportsTableBody.innerHTML = `
+                    <tr><td colspan="10" class="empty-state">
+                        <div class="empty-state-icon">🧪</div>
+                        <h4>No lab diagnostic reports saved</h4>
+                    </td></tr>
+                `;
+                return;
+            }
+
+            elements.reportsTableBody.innerHTML = filtered.map(r => {
+                const status = (r.overall_status || "optimal").toLowerCase();
+                const badgeLabel = status === 'danger' ? 'Critical' : (status === 'borderline' ? 'Borderline' : 'Normal');
+                return `
+                    <tr>
+                        <td><span class="code-token">#${r.report_id}</span></td>
+                        <td><strong>${r.patient_name}</strong></td>
+                        <td><span class="status-badge ${status}">${badgeLabel}</span></td>
+                        <td>${r.glucose ? `${r.glucose} mg/dL` : '-'}</td>
+                        <td>${r.hba1c ? `${r.hba1c}%` : '-'}</td>
+                        <td>${r.bp_systolic ? `${r.bp_systolic}/${r.bp_diastolic || 80}` : '-'}</td>
+                        <td>${r.cholesterol ? `${r.cholesterol} mg/dL` : '-'}</td>
+                        <td>
+                            ${r.file_path ? `<a href="${r.file_path}" target="_blank" style="color:var(--primary); font-weight:700;">📎 File</a>` : 'None'}
+                        </td>
+                        <td><small style="color: var(--text-dim);">${r.created_at ? r.created_at.split(" ")[0] : '-'}</small></td>
+                        <td>
+                            <button class="btn-table danger btn-del-report" data-id="${r.id}" title="Delete report">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            elements.reportsTableBody.querySelectorAll(".btn-del-report").forEach(b => {
+                b.addEventListener("click", () => deleteReport(b.getAttribute("data-id")));
+            });
+        }
+
+        async function deleteReport(id) {
+            if (!confirm("Permanently delete this lab report?")) return;
+            try {
+                const res = await fetch(`/api/reports/${id}`, { method: "DELETE" });
+                const data = await res.json();
+                if (data.success) {
+                    showToast("Lab report deleted", "🗑️");
+                    loadBackendData();
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // Render Triage Table
+        function renderTriage(query) {
+            const filtered = state.triage.filter(t => {
+                if (!query) return true;
+                return (t.patient_name || "").toLowerCase().includes(query) ||
+                       (t.assessment_id || "").toLowerCase().includes(query) ||
+                       (t.concern || "").toLowerCase().includes(query);
+            });
+
+            if (filtered.length === 0) {
+                elements.triageTableBody.innerHTML = `
+                    <tr><td colspan="8" class="empty-state">
+                        <div class="empty-state-icon">🩺</div>
+                        <h4>No triage evaluations recorded</h4>
+                    </td></tr>
+                `;
+                return;
+            }
+
+            elements.triageTableBody.innerHTML = filtered.map(t => {
+                const levelClass = t.triage_level === 1 ? 'danger' : (t.triage_level === 2 ? 'borderline' : 'optimal');
+                const levelLabel = t.triage_level === 1 ? 'Level 1 (Emergency)' : (t.triage_level === 2 ? 'Level 2 (Urgent)' : 'Routine / Home');
+                const causes = Array.isArray(t.possible_causes) ? t.possible_causes.slice(0, 2).join(", ") : (t.possible_causes || "-");
+                return `
+                    <tr>
+                        <td><span class="code-token">#${t.assessment_id}</span></td>
+                        <td><strong>${t.patient_name || 'Self'}</strong></td>
+                        <td><span class="status-badge ${levelClass}">${levelLabel}</span></td>
+                        <td><strong>${t.severity || 5}</strong> / 10</td>
+                        <td><span style="font-style: italic;">"${t.concern || 'Symptoms analyzed'}"</span></td>
+                        <td><small style="color: var(--text-muted);">${causes}</small></td>
+                        <td><small style="color: var(--text-dim);">${t.created_at ? t.created_at.split(" ")[0] : '-'}</small></td>
+                        <td>
+                            <button class="btn-table danger btn-del-triage" data-id="${t.id}" title="Delete record">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            elements.triageTableBody.querySelectorAll(".btn-del-triage").forEach(b => {
+                b.addEventListener("click", () => deleteTriage(b.getAttribute("data-id")));
+            });
+        }
+
+        async function deleteTriage(id) {
+            if (!confirm("Delete this triage evaluation log?")) return;
+            try {
+                const res = await fetch(`/api/triage/${id}`, { method: "DELETE" });
+                const data = await res.json();
+                if (data.success) {
+                    showToast("Triage log deleted", "🗑️");
+                    loadBackendData();
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // Developer API Tester
+        async function runApiTest(endpoint) {
+            elements.apiTargetUrl.textContent = `TARGET: http://localhost:8080${endpoint}`;
+            elements.apiStatusBadge.textContent = "Fetching...";
+            try {
+                const startTime = performance.now();
+                const res = await fetch(endpoint);
+                const elapsed = Math.round(performance.now() - startTime);
+                const data = await res.json();
+
+                elements.apiStatusBadge.textContent = `HTTP ${res.status} OK (${elapsed}ms)`;
+                elements.jsonOutputBox.textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                elements.apiStatusBadge.textContent = "HTTP ERR";
+                elements.jsonOutputBox.textContent = String(err);
+            }
+        }
+
+        // CSV Export
+        function exportCsv() {
+            let csv = "";
+            if (state.activeTab === "tabAppointments") {
+                csv = "ID,Token,Patient,Phone,Doctor,Specialty,Date,Slot,Mode,Status\n";
+                state.appointments.forEach(a => {
+                    csv += `"${a.id}","${a.token}","${a.patient_name}","${a.patient_phone}","${a.doctor_name}","${a.specialty}","${a.appointment_date}","${a.appointment_slot}","${a.consult_mode}","${a.status}"\n`;
+                });
+            } else if (state.activeTab === "tabReports") {
+                csv = "ID,ReportID,Patient,Glucose,HbA1c,BP_Systolic,BP_Diastolic,Cholesterol,Status\n";
+                state.reports.forEach(r => {
+                    csv += `"${r.id}","${r.report_id}","${r.patient_name}","${r.glucose}","${r.hba1c}","${r.bp_systolic}","${r.bp_diastolic}","${r.cholesterol}","${r.overall_status}"\n`;
+                });
+            } else {
+                csv = "ID,AssessmentID,Patient,Severity,Level,Concern\n";
+                state.triage.forEach(t => {
+                    csv += `"${t.id}","${t.assessment_id}","${t.patient_name}","${t.severity}","${t.triage_level}","${t.concern}"\n`;
+                });
+            }
+
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `careguide_${state.activeTab}_export.csv`;
+            link.click();
+            showToast("CSV file exported!");
+        }
+
+        // Tab Switching
+        document.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const targetTab = btn.getAttribute("data-tab");
+                state.activeTab = targetTab;
+
+                document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+                document.getElementById(targetTab).classList.add("active");
+
+                if (targetTab === "tabDevConsole") {
+                    runApiTest("/api/stats");
+                } else {
+                    renderCurrentTab();
+                }
+            });
+        });
+
+        // Search Input
+        elements.searchInput.addEventListener("input", renderCurrentTab);
+        elements.refreshBtn.addEventListener("click", () => loadBackendData(true));
+        elements.exportCsvBtn.addEventListener("click", exportCsv);
+
+        // API Explorer Buttons
+        document.querySelectorAll(".endpoint-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".endpoint-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                runApiTest(btn.getAttribute("data-url"));
+            });
+        });
+
+        // Initial Load
+        loadBackendData();
+    </script>
+</body>
+</html>
